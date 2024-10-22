@@ -1,56 +1,26 @@
 import React from 'react'
+import AcceptTask from './AcceptTask'
+import NewTask from './NewTask'
+import CompleteTask from './CompleteTask'
+import FailedTask from './FailedTask'
 
-const TaskList = () => {
+const TaskList = ({data}) => {
   return (
     <div id='taskList' className='flex items-center justify-start gap-5 flex-nowrap overflow-x-auto h-[55%] w-full py-5 mt-10'>
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-red-400 rounded-xl'>
-            <div className='flex justify-between items-center'>
-                <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                <h4 className='text-sm'>20 Feb 2024</h4>
-            </div>
-            <h2 className='mt-5 text-xl font-semibold'>
-                Make a youtube video
-            </h2>
-            <p className='text-sm mt-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum illo harum quaerat aspernatur neque. Quae.
-            </p>
-        </div>
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-green-400 rounded-xl'>
-            <div className='flex justify-between items-center'>
-                <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                <h4 className='text-sm'>20 Feb 2024</h4>
-            </div>
-            <h2 className='mt-5 text-xl font-semibold'>
-                Make a youtube video
-            </h2>
-            <p className='text-sm mt-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum illo harum quaerat aspernatur neque. Quae.
-            </p>
-        </div>
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-blue-400 rounded-xl'>
-            <div className='flex justify-between items-center'>
-                <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                <h4 className='text-sm'>20 Feb 2024</h4>
-            </div>
-            <h2 className='mt-5 text-xl font-semibold'>
-                Make a youtube video
-            </h2>
-            <p className='text-sm mt-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum illo harum quaerat aspernatur neque. Quae.
-            </p>
-        </div>
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-yellow-400 rounded-xl'>
-            <div className='flex justify-between items-center'>
-                <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                <h4 className='text-sm'>20 Feb 2024</h4>
-            </div>
-            <h2 className='mt-5 text-xl font-semibold'>
-                Make a youtube video
-            </h2>
-            <p className='text-sm mt-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum illo harum quaerat aspernatur neque. Quae.
-            </p>
-        </div>
+        {data.tasks.map((e,index) => {
+            if(e.active){
+                return <AcceptTask key={index} data={e}/>
+            }
+            if(e.newTask){
+                return <NewTask key={index} data={e}/>
+            }
+            if(e.completed){
+                return <CompleteTask key={index} data={e}/>
+            }
+            if(e.failed){
+                return <FailedTask key={index} data={e}/>
+            }
+        })}
         
     </div>
   )
